@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: "build",
   images: {
-    domains: ["accessories.admin.ngengroup.org"],
     remotePatterns: [new URL("https://accessories.admin.ngengroup.org/**")],
   },
-  distDir: "dist",
 };
 
 export default nextConfig;

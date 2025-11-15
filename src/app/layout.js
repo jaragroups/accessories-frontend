@@ -35,8 +35,41 @@ const neuzeitGrotesk = localFont({
 });
 
 export const metadata = {
-  title: "Micropack",
-  description: "Accessories management platform.",
+  title: "Accessories || Online Shopping in Bangladesh",
+  description:
+    "Shop online at Accessories for the latest electronics, fashion, groceries, and home essentials. Fast delivery and best prices across Bangladesh.",
+  keywords: [
+    "Accessories",
+    "Online Shopping",
+    "Bangladesh",
+    "Ecommerce",
+    "Fashion",
+    "Electronics",
+    "Groceries",
+    "Home Essentials",
+  ],
+  metadataBase: new URL("https://accessories.ngengroup.org/"),
+  openGraph: {
+    title: "Accessories || Online Shopping in Bangladesh",
+    description:
+      "Discover great deals on electronics, fashion, and daily essentials at Accessories. Shop smart, shop fast!",
+    url: "https://accessories.ngengroup.org/",
+    siteName: "Accessories",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        alt: "Accessories || Online Shopping in Bangladesh",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessories || Shop Online in Bangladesh",
+    description:
+      "Shop online for fashion, electronics, and groceries at Accessories. Great prices and fast delivery!",
+    images: ["/opengraph-image.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -49,7 +82,15 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             <CartProvider>
               <Navbar />
-              <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+              <Suspense
+                fallback={
+                  <div className="flex items-center justify-center md:min-h-[calc(100dvh-33rem)]">
+                    Loading...
+                  </div>
+                }
+              >
+                {children}
+              </Suspense>
               <Footer />
             </CartProvider>
           </AuthProvider>
