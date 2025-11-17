@@ -4,7 +4,6 @@ import AuthLayout from "@/components/(auth)/AuthLayout/AuthLayout";
 import Button from "@/components/(auth)/Button/Button";
 import FormField from "@/components/shared/FormField/FormField";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { SignUp } from "@clerk/nextjs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -18,7 +17,7 @@ export default function Page() {
     password: "",
     customerType: "customer",
     confirmPassword: "",
-    agreeToTerms: false,
+    agreeToTerms: true,
   });
 
   const [errors, setErrors] = useState({});
@@ -106,12 +105,6 @@ export default function Page() {
   };
 
   return (
-    <section className="flex min-h-[calc(100dvh-27.375rem)] items-center justify-center py-10">
-      <SignUp />
-    </section>
-  );
-
-  return (
     <AuthLayout
       title="Create an account"
       subtitle="Sign up to get started with Micropack"
@@ -174,7 +167,7 @@ export default function Page() {
         <div>
           <label
             htmlFor={"customerType"}
-            className="mb-1 block text-sm font-medium text-gray-700"
+            className="mb-1 block w-full text-sm font-medium text-gray-700"
           >
             Customer Type <span className="text-red-500">*</span>
           </label>
@@ -184,7 +177,7 @@ export default function Page() {
             id="customerType"
             value={formData.customerType}
             onChange={handleChange}
-            className="rounded-lg border px-2 py-2 text-lg text-gray-500"
+            className="w-[91.5%] rounded-lg border border-gray-300 px-4 py-3 text-lg text-gray-500"
           >
             <option value="customer">Customer</option>
             <option value="partner">Partner</option>
