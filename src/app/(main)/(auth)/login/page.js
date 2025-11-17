@@ -6,7 +6,6 @@ import FormField from "@/components/shared/FormField/FormField";
 import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { authActions } from "@/reducers/authReducer";
-import { SignIn } from "@clerk/nextjs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -66,6 +65,8 @@ const LoginPage = () => {
           password: formData.password,
         });
 
+        console.log("Response: ", response);
+
         const { data } = response;
 
         if (formData.rememberMe) {
@@ -74,7 +75,7 @@ const LoginPage = () => {
 
         dispatch({ type: authActions.LOGIN, payload: data.data });
 
-        router.push("/profile");
+        // router.push("/profile");
       } catch (error) {
         console.error("Login error:", error);
         setErrors({
@@ -85,12 +86,6 @@ const LoginPage = () => {
       }
     }
   };
-
-  return (
-    <section className="flex min-h-[calc(100dvh-27.375rem)] items-center justify-center">
-      <SignIn />
-    </section>
-  );
 
   return (
     <AuthLayout
