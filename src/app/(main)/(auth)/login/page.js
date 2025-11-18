@@ -6,6 +6,7 @@ import FormField from "@/components/shared/FormField/FormField";
 import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { authActions } from "@/reducers/authReducer";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -55,6 +56,15 @@ const LoginPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const setCookie = (value) => {
+    Cookies.set("auth", value, {
+      expires: 7,
+      path: "/",
+      secure: true,
+      sameSite: "strict",
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -71,11 +81,12 @@ const LoginPage = () => {
 
         if (formData.rememberMe) {
           localStorage.setItem("user", JSON.stringify(data.data));
+          setCookie(JSON.stringify(data.data));
         }
 
         dispatch({ type: authActions.LOGIN, payload: data.data });
 
-        // router.push("/profile");
+        router.push("/profile");
       } catch (error) {
         console.error("Login error:", error);
         setErrors({

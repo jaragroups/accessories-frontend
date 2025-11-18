@@ -1,18 +1,24 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-// Define your public and protected paths
-const isPublicRoute = createRouteMatcher([
-  "/login",
-  "/register",
-  "/forgot-password",
-]);
-const isProtectedRoute = createRouteMatcher(["/checkout", "/profile"]);
+export function middleware(request) {
+  const authCookie = request.cookies.has("auth");
 
-export default clerkMiddleware(async (auth, request) => {
-  if (isProtectedRoute(request)) {
-    await auth.protect();
-  }
-});
+  const privateRoutes = ["/checkout", "/profile", "/profile/*"];
+
+  privateRoutes.forEach((route) => {
+    if (request.nextUrl.pathname.startsWith(route) && !authCookie) {
+      return NextResponse.rewrite(new URL("/login", request.url));
+    }
+  });
+
+  const publicRoutes = ["/login", "/register", "/forgot-password"];
+
+  publicRoutes.forEach((route) => {
+    if (request.nextUrl.pathname.startsWith(route) && authCookie) {
+      return NextResponse.rewrite(new URL("/profile", request.url));
+    }
+  });
+}
 
 export const config = {
   matcher: [

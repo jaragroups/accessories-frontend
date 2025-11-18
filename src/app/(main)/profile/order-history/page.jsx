@@ -6,10 +6,15 @@ import {
   TableCaption,
   TableCell,
 } from "@/components/ui/table";
-import { currentUser } from "@clerk/nextjs/server";
 
 export default async function Page({ searchParams }) {
-  const user = await currentUser();
+  const user = {
+    emailAddresses: [
+      {
+        emailAddress: "lahodyj@mailinator.com",
+      },
+    ],
+  };
 
   let content;
 

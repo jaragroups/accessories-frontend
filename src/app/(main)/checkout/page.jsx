@@ -1,13 +1,12 @@
 "use client";
 
-import DeliveryForm from "@/components/checkout/DeliveryForm";
 import BillingForm from "@/components/checkout/BillingForm";
+import DeliveryForm from "@/components/checkout/DeliveryForm";
 import ProductSummary from "@/components/checkout/ProductSummary/ProductSummary";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import useCart from "@/hooks/useCart";
 import flattenAccessories from "@/lib/flattenAccessories";
 import { cartActions } from "@/reducers/cartReducer";
-import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -155,21 +154,24 @@ export default function CheckoutPage() {
           phone: addressData.phone || "",
         });
         // If billing is same as shipping, prefill billing with the same data
-        setBillingData((prev) => ({ ...prev, ...{
-          firstName: addressData.first_name || "",
-          lastName: addressData.last_name || "",
-          email:
-            addressData.user_email ||
-            user?.emailAddresses?.[0]?.emailAddress ||
-            "",
-          company: addressData.company || "",
-          addressOne: addressData.address_line1 || "",
-          addressTwo: addressData.address_line2 || "",
-          state: addressData.city || "",
-          country: addressData.country || "",
-          postalCode: addressData.postal_code || "",
-          phone: addressData.phone || "",
-        }}));
+        setBillingData((prev) => ({
+          ...prev,
+          ...{
+            firstName: addressData.first_name || "",
+            lastName: addressData.last_name || "",
+            email:
+              addressData.user_email ||
+              user?.emailAddresses?.[0]?.emailAddress ||
+              "",
+            company: addressData.company || "",
+            addressOne: addressData.address_line1 || "",
+            addressTwo: addressData.address_line2 || "",
+            state: addressData.city || "",
+            country: addressData.country || "",
+            postalCode: addressData.postal_code || "",
+            phone: addressData.phone || "",
+          },
+        }));
       }
     }
     if (isLoaded) {
