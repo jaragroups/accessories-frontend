@@ -1,23 +1,23 @@
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
-  const authCookie = request.cookies.has("auth");
+  const hasAuthCookie = request.cookies.has("auth");
 
-  const privateRoutes = ["/checkout", "/profile", "/profile/*"];
+  const privateRoutes = ["/checkout", "/profile"];
 
-  privateRoutes.forEach((route) => {
-    if (request.nextUrl.pathname.startsWith(route) && !authCookie) {
-      return NextResponse.rewrite(new URL("/login", request.url));
+  for (const route of privateRoutes) {
+    if (request.nextUrl.pathname.startsWith(route) && !hasAuthCookie) {
+      return NextResponse.redirect(new URL("/login", request.url));
     }
-  });
+  }
 
   const publicRoutes = ["/login", "/register", "/forgot-password"];
 
-  publicRoutes.forEach((route) => {
-    if (request.nextUrl.pathname.startsWith(route) && authCookie) {
-      return NextResponse.rewrite(new URL("/profile", request.url));
+  for (const route of publicRoutes) {
+    if (request.nextUrl.pathname.startsWith(route) && hasAuthCookie) {
+      return NextResponse.redirect(new URL("/profile", request.url));
     }
-  });
+  }
 }
 
 export const config = {

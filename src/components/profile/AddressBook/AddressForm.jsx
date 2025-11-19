@@ -11,7 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
 export default function AddressForm({ setOpen, setAddresses }) {
@@ -28,7 +27,13 @@ export default function AddressForm({ setOpen, setAddresses }) {
     defaultAddress: false,
   });
   const [countries, setCountries] = useState([]);
-  const { user } = useUser();
+  const user = {
+    emailAddresses: [
+      {
+        emailAddress: "lahodyj@mailinator.com",
+      },
+    ],
+  };
   const axios = useAxiosSecure();
 
   useEffect(() => {

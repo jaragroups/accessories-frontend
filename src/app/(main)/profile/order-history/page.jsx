@@ -5,6 +5,7 @@ import {
   TableBody,
   TableCaption,
   TableCell,
+  TableRow,
 } from "@/components/ui/table";
 
 export default async function Page({ searchParams }) {

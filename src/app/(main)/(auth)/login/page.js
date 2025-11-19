@@ -75,8 +75,6 @@ const LoginPage = () => {
           password: formData.password,
         });
 
-        console.log("Response: ", response);
-
         const { data } = response;
 
         if (formData.rememberMe) {

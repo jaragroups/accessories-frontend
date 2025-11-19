@@ -11,14 +11,19 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 
 export default function Page() {
   const [addresses, setAddresses] = useState([]);
   const [open, setOpen] = useState(false);
-  const { user } = useUser();
+  const user = {
+    emailAddresses: [
+      {
+        emailAddress: "lahodyj@mailinator.com",
+      },
+    ],
+  };
   const axios = useAxiosSecure();
 
   useEffect(() => {
