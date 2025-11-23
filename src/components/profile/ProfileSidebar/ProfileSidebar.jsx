@@ -41,7 +41,7 @@ const items = [
 
 export default function ProfileSidebar() {
   return (
-    <Sidebar className={cn("h-full")}>
+    <Sidebar className={cn("sticky top-20 h-full")}>
       <SidebarContent className="h-full overflow-x-hidden">
         <SidebarGroup>
           <SidebarGroupContent>
