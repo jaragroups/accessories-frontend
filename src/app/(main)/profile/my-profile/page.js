@@ -11,7 +11,7 @@ export default function ProfilePage() {
 
       <section className="mt-9">
         {/* Profile Header */}
-        <section className="flex items-center gap-x-14 rounded-lg border px-11 py-9">
+        <section className="flex items-center gap-x-4 rounded-lg border px-11 py-9 md:gap-x-14">
           <Image
             src={"/user.png"}
             alt="Profile"
