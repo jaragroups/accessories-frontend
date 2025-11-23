@@ -43,7 +43,6 @@ export default function CheckoutPage() {
   const {
     user: { user },
   } = useAuth();
-  console.log("🚀 ~ CheckoutPage ~ user:", user);
   const router = useRouter();
 
   const flattenedCart = flattenAccessories(cart);
@@ -79,6 +78,7 @@ export default function CheckoutPage() {
     const orderItems = flattenedCart.map((product) => {
       const orderItem = {
         product_id: product.id,
+        product_name: product.name,
         product_slug: product.slug,
         qty: product?.quantity || 1,
         price: parseFloat(product.price),
@@ -122,18 +122,15 @@ export default function CheckoutPage() {
         order_items: orderItems,
       };
 
-      const result = await axios.post("/v1/checkout-store", formData);
-
-      console.log("🚀 ~ handleConfirmOrder ~ result:", result);
+      await axios.post("/v1/checkout-store", formData);
 
       dispatch({ type: cartActions.clearCart });
 
       toast.success("Order confirmed successfully");
-      router.push("/profile/order-history");
+      router.push("/profile/orders");
     } catch (error) {
-      console.log("🚀 ~ handleConfirmOrder ~ error:", error);
       toast.error("An error occurred while confirming the order.");
-      // console.error("Error confirming order:", JSON.stringify(error, null, 2));
+      console.error("Error confirming order:", JSON.stringify(error, null, 2));
     }
   };
 

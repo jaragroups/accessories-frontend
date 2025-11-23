@@ -12,6 +12,7 @@ export default function Accessory({ accessory, handleAddToCart }) {
     const data = {
       id,
       slug,
+      name,
       price,
     };
 
@@ -19,13 +20,13 @@ export default function Accessory({ accessory, handleAddToCart }) {
   };
 
   return (
-    <div className="scale-75 flex flex-col gap-y-3 rounded-xl border bg-gray-100 p-3 w-full">
+    <div className="flex w-full scale-75 flex-col gap-y-3 rounded-xl border bg-gray-100 p-3">
       <Image
         src={thumbnail_image}
         alt={name}
         width={200}
         height={150}
-        className="w-[200px] h-[150px]"
+        className="h-[150px] w-[200px]"
       />
 
       <div className="flex items-center gap-x-2">

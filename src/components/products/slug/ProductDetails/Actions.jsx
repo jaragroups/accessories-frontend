@@ -13,6 +13,7 @@ export default function Actions({
     const data = {
       id: productData.id,
       slug: productData.slug,
+      name: productData.name,
       color: productData?.images?.[selectedVariant.index]?.color,
       price:
         productData.images?.[selectedVariant.index]?.price || productData.price,
@@ -22,7 +23,7 @@ export default function Actions({
   };
 
   return (
-    <div className="mt-3 w-full flex items-center gap-x-10">
+    <div className="mt-3 flex w-full items-center gap-x-10">
       <div>
         <label htmlFor="quantity" className="text-lg text-gray-500">
           Quantity:
@@ -48,7 +49,7 @@ export default function Actions({
       </div>
 
       <button
-        className="button-primary shrink-0 mt-8 cursor-pointer text-white"
+        className="button-primary mt-8 shrink-0 cursor-pointer text-white"
         onClick={onAddToCart}
       >
         Add to Cart

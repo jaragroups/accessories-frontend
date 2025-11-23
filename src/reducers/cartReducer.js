@@ -2,6 +2,7 @@
 // {
 //   id: 1,
 //   slug: "product-1",
+//   name: "product 1",
 //   color: "color-name",
 //   price: 10,
 //   quantity: 2,
