@@ -34,7 +34,7 @@ const items = [
   },
   {
     title: "My Profile",
-    url: "/profile",
+    url: "/profile/my-profile",
     icon: Inbox,
   },
 ];
