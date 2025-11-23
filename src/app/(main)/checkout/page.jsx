@@ -3,6 +3,7 @@
 import BillingForm from "@/components/checkout/BillingForm";
 import DeliveryForm from "@/components/checkout/DeliveryForm";
 import ProductSummary from "@/components/checkout/ProductSummary/ProductSummary";
+import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import useCart from "@/hooks/useCart";
 import flattenAccessories from "@/lib/flattenAccessories";
@@ -39,7 +40,10 @@ export default function CheckoutPage() {
   const [billingSameAsShipping, setBillingSameAsShipping] = useState(true);
   const axios = useAxiosSecure();
   const { cart, dispatch } = useCart();
-  const { user, isLoaded } = useUser();
+  const {
+    user: { user },
+  } = useAuth();
+  console.log("🚀 ~ CheckoutPage ~ user:", user);
   const router = useRouter();
 
   const flattenedCart = flattenAccessories(cart);
@@ -89,6 +93,7 @@ export default function CheckoutPage() {
 
     try {
       const effectiveBilling = billingSameAsShipping ? data : billingData;
+
       const formData = {
         shipping_first_name: data.firstName,
         shipping_last_name: data.lastName,
@@ -113,26 +118,29 @@ export default function CheckoutPage() {
         sub_total: subtotalPrice,
         total_amount: totalPrice,
         payment_method: "cod",
-        user_email: user.emailAddresses[0].emailAddress,
+        user_email: user.email,
         order_items: orderItems,
       };
 
-      await axios.post("/v1/checkout-store", formData);
+      const result = await axios.post("/v1/checkout-store", formData);
+
+      console.log("🚀 ~ handleConfirmOrder ~ result:", result);
 
       dispatch({ type: cartActions.clearCart });
 
       toast.success("Order confirmed successfully");
       router.push("/profile/order-history");
     } catch (error) {
+      console.log("🚀 ~ handleConfirmOrder ~ error:", error);
       toast.error("An error occurred while confirming the order.");
-      console.error("Error confirming order:", JSON.stringify(error, null, 2));
+      // console.error("Error confirming order:", JSON.stringify(error, null, 2));
     }
   };
 
   useEffect(() => {
     async function fetchUserDeliveryAddress() {
       const res = await axios.get(
-        `/v1/user/delivery-addresses?user_email=${user?.emailAddresses?.[0]?.emailAddress}&is_default=1`,
+        `/v1/user/delivery-addresses?user_email=${user?.user?.email}&is_default=1`,
       );
       const addressData = res.data?.data?.at(-1);
       console.log("🚀 ~ fetchUserDeliveryAddress ~ addressData:", addressData);
@@ -174,10 +182,11 @@ export default function CheckoutPage() {
         }));
       }
     }
-    if (isLoaded) {
+
+    if (user?.user?.email) {
       fetchUserDeliveryAddress();
     }
-  }, [isLoaded, user, axios]);
+  }, [user, axios]);
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-8">
