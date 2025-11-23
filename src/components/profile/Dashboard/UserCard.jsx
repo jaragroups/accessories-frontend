@@ -1,6 +1,6 @@
 export default function UserCard() {
   return (
-    <div className="rounded bg-gray-100/60 p-4">
+    <div className="col-span-3 rounded bg-gray-100/60 p-4 md:col-span-1">
       <h2 className="font-base text-xl">Personal Profile</h2>
 
       <div className="mt-4">

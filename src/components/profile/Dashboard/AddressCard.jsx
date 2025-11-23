@@ -1,6 +1,6 @@
 export default function AddressCard() {
   return (
-    <section className="col-span-2 rounded bg-gray-100/60 p-4">
+    <section className="col-span-3 rounded bg-gray-100/60 p-4 md:col-span-2">
       <h2 className="font-base text-xl">Address Book</h2>
 
       <div className="flex items-start justify-between gap-x-4 divide-x-2">
@@ -13,7 +13,7 @@ export default function AddressCard() {
 
 function AddressDetails({ type }) {
   return (
-    <div className="mt-4 min-h-25 w-1/2">
+    <div className="mt-4 min-h-25 w-1/2 pr-0.5">
       <p className="font-base text-lg text-gray-500">{type}</p>
 
       <h4 className="font-semibold">John Doe</h4>

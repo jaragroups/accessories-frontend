@@ -7,7 +7,7 @@ export default function DashboardPage() {
     <div>
       <h1 className="text-3xl">Manage My Dashboard</h1>
 
-      <section className="mt-5 grid grid-cols-3 gap-x-5">
+      <section className="mt-5 grid grid-cols-3 gap-5">
         <UserCard />
         <AddressCard />
       </section>
