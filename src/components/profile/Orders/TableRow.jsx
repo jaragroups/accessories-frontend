@@ -1,5 +1,4 @@
 import { TableCell, TableRow } from "@/components/ui/table";
-import Link from "next/link";
 
 export default function Row({ order }) {
   const {
@@ -12,6 +11,8 @@ export default function Row({ order }) {
     order_items,
   } = order || {};
 
+  console.log("🚀 ~ Row ~ order_items:", order_items);
+
   let children = null;
 
   if (order_items && order_items.length > 0) {
@@ -20,9 +21,11 @@ export default function Row({ order }) {
         item || {};
 
       return (
-        <TableRow>
-          <TableCell className="max-w-[150px] truncate font-medium">
-            <Link href={`/products/${product_slug}`}>{product_name}</Link>
+        <TableRow key={product_slug}>
+          <TableCell className="max-w-[130px] truncate font-medium">
+            {/* <Link href={`/products/${product_slug}`}> */}
+            {product_name}
+            {/* </Link> */}
           </TableCell>
           <TableCell className="text-end capitalize">
             {parseFloat(price).toFixed(2)}

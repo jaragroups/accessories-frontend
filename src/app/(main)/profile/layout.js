@@ -9,7 +9,7 @@ export default function Layout({ children }) {
       <SidebarInset>
         <ProfileHeader />
 
-        <main className="py-4 pl-5">{children}</main>
+        <main className="px-5 py-4">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
