@@ -8,7 +8,8 @@ export default function Layout({ children }) {
       <ProfileSidebar />
       <SidebarInset>
         <ProfileHeader />
-        {children}
+
+        <main className="py-4 pl-5">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
