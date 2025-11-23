@@ -46,7 +46,10 @@ export default function NavIcons() {
             </PopoverClose>
 
             <PopoverClose asChild>
-              <Link href={"/profile"} className="block h-full w-full">
+              <Link
+                href={"/profile/my-profile"}
+                className="block h-full w-full"
+              >
                 <Button
                   className={"w-[84%] cursor-pointer justify-start py-0"}
                   variant={"ghost"}
