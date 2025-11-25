@@ -19,10 +19,10 @@ export default function ProductDescription({ description, specification }) {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="description">
+        <TabsContent value="description" className={"bg-transparent pt-5"}>
           {description ? (
             <article
-              className="prose mt-2 max-w-full"
+              className="prose mt-2 max-w-full bg-transparent"
               dangerouslySetInnerHTML={{ __html: description }}
             ></article>
           ) : (
@@ -32,14 +32,14 @@ export default function ProductDescription({ description, specification }) {
           )}
         </TabsContent>
 
-        <TabsContent value="specification">
+        <TabsContent value="specification" className={"bg-transparent pt-5"}>
           {specification ? (
             <article
               className="prose mt-2 max-w-full"
               dangerouslySetInnerHTML={{ __html: specification }}
             ></article>
           ) : (
-            <p className="p-4 text-center text-muted-foreground">
+            <p className="mt-12 p-4 text-center text-muted-foreground">
               No specification available
             </p>
           )}

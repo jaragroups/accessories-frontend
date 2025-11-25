@@ -8,7 +8,7 @@ export default function Product({ product }) {
 
   return (
     <div className="border-stroke relative h-[23.875rem] rounded-[0.625rem] border bg-white md:w-[17.75rem]">
-      <div className="group relative h-fit w-fit overflow-hidden rounded-3xl">
+      <div className="group relative h-fit w-fit overflow-hidden">
         <Link href={`/products/${slug}`}>
           <Image
             src={thumbnail_image}
