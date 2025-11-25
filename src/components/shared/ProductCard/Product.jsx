@@ -9,7 +9,7 @@ export default function Product({ product }) {
   return (
     <div className="border-stroke relative h-[23.875rem] rounded-[0.625rem] border bg-white md:w-[17.75rem]">
       <div className="group relative h-fit w-fit overflow-hidden rounded-3xl">
-        <Link href={`/shop/product/${slug}`}>
+        <Link href={`/products/${slug}`}>
           <Image
             src={thumbnail_image}
             alt={name}
@@ -18,7 +18,7 @@ export default function Product({ product }) {
             className="border-stroke block h-[15.813rem] w-[17.625rem] rounded-t-[0.625rem] border-b group-hover:hidden"
           />
         </Link>
-        <Link href={`/shop/product/${slug}`}>
+        <Link href={`/products/${slug}`}>
           <Image
             src={thumbnail_image_2}
             alt={name}
@@ -32,7 +32,7 @@ export default function Product({ product }) {
       <div className="p-4">
         <div className="flex items-center justify-between">
           <Link
-            href={`/shop/product/${slug}`}
+            href={`/products/${slug}`}
             className="max-w-[13rem] truncate capitalize"
           >
             {name}
