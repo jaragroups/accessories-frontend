@@ -93,7 +93,7 @@ export default function RootLayout({ children }) {
         <Toaster position="top-right" reverseOrder={false} />
 
         <div
-          className="pointer-events-none absolute inset-0 isolate -z-1"
+          className="pointer-events-none fixed inset-0 isolate -z-1"
           style={{
             backgroundImage: `
         repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
